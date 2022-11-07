@@ -160,6 +160,7 @@ include_directories(
 ## in contrast to setup.py, you can choose the destination
 catkin_install_python(PROGRAMS
   nodes/twist2pic.py
+  nodes/teleop_joy.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
