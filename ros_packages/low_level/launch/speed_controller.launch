@@ -1,4 +1,9 @@
 <launch>
+
+    <include file="$(find bebop_driver)/launch/bebop_node.launch">
+        <param name="ip" value="192.168.50.79"/>
+    </include>
+
     <!-- arguments -->
     <arg name="joy_dev" default="/dev/input/js0" doc="joystick device"/>
 
@@ -14,6 +19,8 @@
 
     <node pkg="rqt_image_view" type="rqt_image_view" name="viewer">
     </node>
+
+    
     
     <node pkg="low_level" type="teleop_joy.py" name="teleop_joy">
         <remap from="/cmd_vel" to="/bebop/cmd_vel"/>
