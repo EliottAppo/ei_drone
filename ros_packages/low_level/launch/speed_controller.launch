@@ -1,0 +1,18 @@
+<launch>
+    <!-- arguments -->
+    <arg name="joy_dev" default="/dev/input/js0" doc="joystick device"/>
+
+    <!-- Joystick driver -->
+    <node pkg="joy" type="joy_node" name="joy_node" output="screen">
+        <param name="deadzone" value="0.1"/>
+        <param name="dev" value="$(arg joy_dev)"/>
+    </node>
+    
+
+    <node pkg="low_level" type="twist2pic.py" name="twist2pic">
+    </node>
+
+    <node pkg="rqt_image_view" type="rqt_image_view" name="viewer">
+    </node>
+    
+</launch>
