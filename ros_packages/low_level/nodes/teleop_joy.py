@@ -27,7 +27,7 @@ class TeleopJoy:
         
         if msg.buttons[7] > .5:
             if not self.flying:
-                takeoff_pub.publish(Empty())
+                self.takeoff_pub.publish(Empty())
                 self.flying = True
             else:
 
@@ -38,7 +38,7 @@ class TeleopJoy:
                 cmd_vel_msg.angular.y = 0
                 cmd_vel_msg.angular.z =  msg.axes[0]
         else :
-            land.publish(Empty())
+            self.land_pub.publish(Empty())
             self.flying = False
         # publish message
         self.cmd_vel_pub.publish(cmd_vel_msg)
