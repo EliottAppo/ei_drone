@@ -1,4 +1,4 @@
-# ei_drone : Mercury 01
+# ei_drone : Mercury Eliott branch
 
 
 
