@@ -1,7 +1,7 @@
 <launch>
 
     <include file="$(find bebop_driver)/launch/bebop_node.launch">
-        <param name="ip" value="192.168.50.79"/>
+        <arg name="ip" value="192.168.50.79"/>
     </include>
 
     <!-- arguments -->
