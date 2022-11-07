@@ -161,6 +161,7 @@ include_directories(
 catkin_install_python(PROGRAMS
   nodes/twist2pic.py
   nodes/teleop_joy.py
+  nodes/speed_controller.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
