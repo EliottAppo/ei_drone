@@ -13,7 +13,7 @@ class SpeedController:
 
     def __init__(self):
         #self.x_vel_max = get_param()
-
+        self.current_velocity = Twist()
 
         #Publisher
         self.gathered_vel_pub = rospy.Publisher('/target_vel', Twist, queue_size=1)
@@ -33,13 +33,14 @@ class SpeedController:
         self.gathered_vel_msg_mutex = Lock()
         self.hover = True
         self.odom_mutex = Lock()
+    
 
         self.gains = {
-                "linear_x":   {'Kp': 0.0, 'Kd': 0.0, 'Ki': 0.0},
+                "linear_x":   {'Kp': 2, 'Kd': 0.0, 'Ki': 0.0},
                 "linear_y":  {'Kp': 0.0, 'Kd': 0.0, 'Ki': 0.0}
                 }
-        self.pid_roll = PID(self.gains[linear_x])
-        self.pid_pitch = PID(self.gains[linear_y])
+        self.pid_roll = PID(self.gains["linear_x"])
+        self.pid_pitch = PID(self.gains["linear_y"])
 
 
     def odom_cb(self, msg):
@@ -79,24 +80,26 @@ class SpeedController:
         while not rospy.is_shutdown():
         
             with self.gathered_vel_msg_mutex:
-                t_ros = rospy.Time.now()
-                t_datetime = datetime.datetime.utcfromtimestamp(t_ros.to_sec()) 
-
+            
                 if self.hover:
                     self.gathered_vel_pub.publish(Twist())
                 else:
+                    t_ros = rospy.Time.now()
+                    t_datetime = datetime.datetime.utcfromtimestamp(t_ros.to_sec()) 
                     self.cmd_vel_msg_output = Twist()
                     #self.gathered_vel_pub.publish(self.gathered_vel_msg)
-                    self.pid_roll.update(t_datetime, self.current_velocity.linear.x - self.cmd_vel_msg.linear.x)
-                    self.pid_pitch.update(t_datetime, self.current_velocity.linear.y - self.cmd_vel_msg.linear.y)
+                    self.pid_roll.update(t_datetime, - self.current_velocity.linear.x + self.gathered_vel_msg.linear.x)
+                
+                    self.pid_pitch.update(t_datetime, - self.current_velocity.linear.y + self.gathered_vel_msg.linear.y)
 
-                    self.cmd_vel_msg_output.linear.x = self.pid_roll
-                    self.cmd_vel_msg_output.linear.y = self.pid_pitch
-                    self.cmd_vel_msg_output.linear.z = self.cmd_vel_msg.linear.z
-                    self.cmd_vel_msg_output.angular.z = self.cmd_vel_msg.angular.z
+                    self.cmd_vel_msg_output.linear.x = self.pid_roll.command
+                    
+                    self.cmd_vel_msg_output.linear.y = self.pid_pitch.command
+                    self.cmd_vel_msg_output.linear.z = self.gathered_vel_msg.linear.z
+                    self.cmd_vel_msg_output.angular.z = self.gathered_vel_msg.angular.z
                     
                     self.gathered_vel_pub.publish(self.cmd_vel_msg_output)
-                    
+            rospy.sleep(0.1)
 
 class PID:
 
@@ -136,6 +139,7 @@ class PID:
         '''
         prev_error = self.errors['error']
         prev_time = self.errors['time']
+        
         if prev_time is None:
             self.errors['error'], self.errors['time'] = error, time
             return
@@ -148,6 +152,7 @@ class PID:
 
     @property
     def command(self):
+        
         return self.gains['Kp'] * self.errors['error'] + \
                 self.gains['Kd'] * self.errors['d_error'] + \
                 self.gains['Ki'] * self.errors['i_error']
