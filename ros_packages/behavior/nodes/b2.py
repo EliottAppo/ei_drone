@@ -3,8 +3,8 @@ import rospy
 from behavior_class import Behavior
 
 def main():
-    rospy.init_node('behavior')
-    b=Behavior('Forward')
+    rospy.init_node('behavior_b2')
+    b2=Behavior('Forward')
     rospy.spin()
 
 
