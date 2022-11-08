@@ -1,14 +1,14 @@
 <launch>
-    <!--Launch the BEBOP node
+    <!--Launch the BEBOP node -->
     <include file="$(find bebop_driver)/launch/bebop_node.launch">
         <arg name="ip" value="192.168.50.79"/>
     </include> 
--->
+
     <!-- arguments -->
     <arg name="joy_dev" default="/dev/input/js0" doc="joystick device"/>
 
     <!-- Joystick driver -->
-    <node pkg="joy" type="joy_node" name="joy_node" output="screen">
+    <node pkg="joy" type="joy_node" name="joy_node" >
         <param name="deadzone" value="0.1"/>
         <param name="dev" value="$(arg joy_dev)"/>
     </node>
@@ -21,19 +21,20 @@
     <node pkg="rqt_image_view" type="rqt_image_view" name="viewer">
     </node>
 
-<!-- Controller Teleop 
+<!--Controller Teleop 
     <node pkg="low_level" type="teleop_joy.py" name="teleop_joy">
         <remap from="/cmd_vel" to="/bebop/cmd_vel"/>
-    </node>-->
+    </node> -->
 
-    <!-- Keyboard Teleop (and R2 on the controller for taking off)-->
+    <!-- Keyboard Teleop (and R2 on the controller for taking off) -->
     <node pkg="low_level" type="teleop2.py" name="teleop2">
         <remap from="/cmd_vel" to="/bebop/cmd_vel"/>
     </node>
 
-    <!--Speed Controller Node-->
-    <node pkg="low_level" type="speed_controller.py" name="speed_controller">
+    <!--Speed Controller Node -->
+    <node pkg="low_level" type="speed_controller.py" name="speed_controller" output="screen">
         <remap from="/target_vel" to="/bebop/cmd_vel"/>
-    </node>
+        <remap from="/odom" to="/bebop/odom" />
+    </node>-->
 
 </launch>
