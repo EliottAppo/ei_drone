@@ -154,7 +154,6 @@ def check_if_door_exists(img,
             cv2.rectangle(
                 overlay, (0, img.shape[0]), (s//3, 0), (0, 0, 255), -1)
         if to_left:
-            # return True, Y
             door_exists = True
 
     # detecting door in center region
@@ -165,7 +164,6 @@ def check_if_door_exists(img,
         if debug_drawings:
             cv2.rectangle(
                 overlay, (s//3, img.shape[0]), (2*s//3, 0), (0, 0, 255), -1)
-        # return True, Y
         door_exists = True
 
     # detecting door in right region
@@ -177,7 +175,6 @@ def check_if_door_exists(img,
             cv2.rectangle(
                 overlay, (2*s//3, img.shape[0]), (img.shape[1], 0), (0, 0, 255), -1)
         if not to_left:
-            # return True, Y
             door_exists = True
 
     # indicating presence of door
@@ -186,4 +183,3 @@ def check_if_door_exists(img,
         cv2.addWeighted(overlay, alpha, img, 1 - alpha, 0, img)
 
     return door_exists, Y
-    # return False, Y
