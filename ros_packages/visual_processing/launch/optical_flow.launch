@@ -1,0 +1,5 @@
+<launch>
+    <node pkg="visual_processing" type="optical_flow.py" name="optical_flow" output="screen">
+        <rosparam command="load" file="$(find visual_processing)/config/visual_processing.yaml" />
+    </node>
+</launch>

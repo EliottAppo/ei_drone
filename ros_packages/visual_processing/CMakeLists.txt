@@ -11,6 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
   rospy
   std_msgs
+  nav_msgs
   message_generation
 )
 

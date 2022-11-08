@@ -4,3 +4,12 @@ vanishing_point:
     min_angle: 15
     sci_value: 0.3
     min_dist: 3
+
+optical_flow:
+    half_width: 5
+    sigma: 30
+    rho: 10
+    median_filter_window: 100
+    maximum_shifts_mean: 10
+    maximum_shifts_std: 5
+    minimum_Y_std: 20
