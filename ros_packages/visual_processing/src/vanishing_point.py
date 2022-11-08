@@ -9,16 +9,16 @@ import visual
 
 
 class VanishingPointNode:
+    """ Vanishing Point Node """
     def __init__(self):
+        """ Class constructor """
         self.image_pub = rospy.Publisher(
             "/vanishing_point/drawing_result/compressed", CompressedImage, queue_size=1)
         self.vp_pub = rospy.Publisher(
             "/vanishing_point/point_result", VanishingPoint,  queue_size=1)
 
-        # TODO change image subscriber topic
-        self.sub = rospy.Subscriber(
-            "/bebop/image_raw/compressed",  CompressedImage, self.on_image,  queue_size=1, buff_size=2**22)
-        # "/image_in/compressed",  CompressedImage, self.on_image,  queue_size=1, buff_size=2**22)
+        self.image_sub = rospy.Subscriber(
+            "/bebop/image_raw/compressed",  CompressedImage, self.on_image_cb,  queue_size=1, buff_size=2**22)
 
         self.min_len = rospy.get_param("/vanishing_point/min_len", 30)
         self.min_angle = rospy.get_param("/vanishing_point/min_angle", 15)
@@ -26,7 +26,10 @@ class VanishingPointNode:
         self.sci_value = rospy.get_param("/vanishing_point/sci_value", 0.3)
         self.min_dist = rospy.get_param("/vanishing_point/min_dist", 3)
 
-    def on_image(self, msg):
+    def on_image_cb(self, msg):
+        """ 
+            `image_sub` subscriber callback
+        """
         compressed_in = np.frombuffer(msg.data, np.uint8)
         frame = cv2.imdecode(compressed_in, cv2.IMREAD_COLOR)
 
