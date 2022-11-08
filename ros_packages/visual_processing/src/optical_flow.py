@@ -12,6 +12,7 @@ import visual
 
 class OpticalFlowNode:
     """ Optical Flow Node """
+
     def __init__(self):
         """ Class constructor """
         self.image_pub = rospy.Publisher(
@@ -38,7 +39,7 @@ class OpticalFlowNode:
         self.minimum_Y_std = rospy.get_param("optical_flow/minimum_Y_std", 20)
 
     def on_odom_cb(self, msg):
-        """ 
+        """
             `odom_sub` subscriber callback
         """
         linear_y = msg.twist.twist.linear.y
