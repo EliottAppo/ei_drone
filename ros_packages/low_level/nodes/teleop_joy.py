@@ -31,9 +31,9 @@ class TeleopJoy:
                 self.flying = True
             else:
 
-                cmd_vel_msg.linear.x = .5 * msg.axes[1]
-                cmd_vel_msg.linear.y = .5 * msg.axes[2]
-                cmd_vel_msg.linear.z = .5 * msg.axes[3]
+                cmd_vel_msg.linear.x = msg.axes[1]
+                cmd_vel_msg.linear.y = msg.axes[2]
+                cmd_vel_msg.linear.z = msg.axes[3]
                 cmd_vel_msg.angular.x = 0
                 cmd_vel_msg.angular.y = 0
                 cmd_vel_msg.angular.z =  msg.axes[0]
