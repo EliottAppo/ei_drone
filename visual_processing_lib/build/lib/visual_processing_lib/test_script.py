@@ -22,8 +22,8 @@ def vanish_point(img):
         lines = visual.angle_inclination_between(
             lines, max_angle, min_angle)
 
-        # draw.lines(img, lines, color=(0, 255, 255),
-        #            thickness=2)
+        draw.lines(img, lines, color=(0, 255, 255),
+                   thickness=2)
 
         # calculating intersection
         intersects = visual.intersect(lines)
@@ -59,6 +59,8 @@ def vanish_point(img):
                 cv2.circle(img, (vp_x, vp_y), radius=4, color=(
                     255, 0, 0), thickness=2)  # drawing vanishing point
 
+
+vanish_point(img)
 
 cv2.imshow("img", img)
 cv2.waitKey(0)

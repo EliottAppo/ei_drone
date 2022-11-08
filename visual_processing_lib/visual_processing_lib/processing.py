@@ -68,9 +68,10 @@ def detect_lines(img):
     """
 
     gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    edges_img = cv2.Canny(gray_img, 50, 150, apertureSize=3)
 
     lsd_detector = cv2.ximgproc.createFastLineDetector()
-    lsd_segments = lsd_detector.detect(gray_img)
+    lsd_segments = lsd_detector.detect(edges_img)
 
     # if no line is detected, returns None
     if lsd_segments is None:

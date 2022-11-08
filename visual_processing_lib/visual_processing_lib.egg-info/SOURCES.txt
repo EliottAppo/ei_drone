@@ -1,8 +1,7 @@
 setup.py
 visual_processing_lib/__init__.py
 visual_processing_lib/draw.py
-visual_processing_lib/test_script.py
-visual_processing_lib/visual.py
+visual_processing_lib/processing.py
 visual_processing_lib.egg-info/PKG-INFO
 visual_processing_lib.egg-info/SOURCES.txt
 visual_processing_lib.egg-info/dependency_links.txt
