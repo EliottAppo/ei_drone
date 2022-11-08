@@ -63,9 +63,9 @@ def get_vanish_point(img,
                 # cv2.circle(img, (vp_x, vp_y), radius=4, color=(
                 #     255, 0, 0), thickness=2)  # drawing vanishing point
 
-            return vanish_x, vanish_y, right_lines, left_lines
+            return vanish_x, vanish_y, right_lines, left_lines, right_angle, left_angle
 
-    return None, None, None, None
+    return None, None, None, None, None, None
 
 
 def draw_vanish_point(img, vanish_x, vanish_y, right_lines, left_lines):

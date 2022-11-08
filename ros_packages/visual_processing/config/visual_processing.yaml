@@ -1,5 +1,4 @@
 vanishing_point:
-    debug: true
     min_len: 30
     max_angle: 75
     min_angle: 15

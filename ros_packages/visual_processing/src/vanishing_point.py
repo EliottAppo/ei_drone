@@ -4,21 +4,22 @@ import numpy as np
 import cv2
 import rospy
 from sensor_msgs.msg import CompressedImage
-
+from visual_processing.msg import VanishingPoint
 import visual
 
 
-class VanishPoint:
+class VanishingPointNode:
     def __init__(self):
         self.image_pub = rospy.Publisher(
             "/vanishing_point/drawing_result/compressed", CompressedImage, queue_size=1)
+        self.vp_pub = rospy.Publisher(
+            "/vanishing_point/point_result", VanishingPoint,  queue_size=1)
 
         # TODO change image subscriber topic
         self.sub = rospy.Subscriber(
             "/bebop/image_raw/compressed",  CompressedImage, self.on_image,  queue_size=1, buff_size=2**22)
         # "/image_in/compressed",  CompressedImage, self.on_image,  queue_size=1, buff_size=2**22)
 
-        self.debug = rospy.get_param("/vanishing_point/debug", True)
         self.min_len = rospy.get_param("/vanishing_point/min_len", 30)
         self.min_angle = rospy.get_param("/vanishing_point/min_angle", 15)
         self.max_angle = rospy.get_param("/vanishing_point/max_angle", 75)
@@ -29,12 +30,22 @@ class VanishPoint:
         compressed_in = np.frombuffer(msg.data, np.uint8)
         frame = cv2.imdecode(compressed_in, cv2.IMREAD_COLOR)
 
-        vanish_x, vanish_y, right_lines, left_lines = visual.get_vanish_point(
+        vanish_x, vanish_y, right_lines, left_lines, right_angle, left_angle = visual.get_vanish_point(
             frame, self.min_len, self.min_angle, self.max_angle, self.sci_value, self.min_dist)
 
-        # TODO publish vanish point
+        # publish vanish point
+        out_vp_msg = VanishingPoint()
+        out_vp_msg.vp_exists = vanish_x is not None and vanish_y is not None
+        if out_vp_msg.vp_exists:
+            out_vp_msg.vp_x = vanish_x
+            out_vp_msg.vp_y = vanish_y
+            out_vp_msg.left_angle = left_angle
+            out_vp_msg.right_angle = right_angle
 
-        if self.debug:
+        self.vp_pub.publish(out_vp_msg)
+
+        # draw and publish image with vanish point drawings
+        if self.image_pub.get_num_connections() > 0:
             visual.draw_vanish_point(
                 frame, vanish_x, vanish_y, right_lines, left_lines)
 
@@ -48,5 +59,5 @@ class VanishPoint:
 
 if __name__ == "__main__":
     rospy.init_node("vanishing_point")
-    VanishPoint()
+    VanishingPointNode()
     rospy.spin()
