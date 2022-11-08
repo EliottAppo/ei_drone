@@ -13,6 +13,7 @@ class VanishPoint:
         self.image_pub = rospy.Publisher(
             "/vanishing_point/drawing_result/compressed", CompressedImage, queue_size=1)
 
+        # TODO change image subscriber topic
         self.sub = rospy.Subscriber(
             "/bebop/image_raw/compressed",  CompressedImage, self.on_image,  queue_size=1, buff_size=2**22)
         # "/image_in/compressed",  CompressedImage, self.on_image,  queue_size=1, buff_size=2**22)
@@ -30,6 +31,8 @@ class VanishPoint:
 
         vanish_x, vanish_y, right_lines, left_lines = visual.get_vanish_point(
             frame, self.min_len, self.min_angle, self.max_angle, self.sci_value, self.min_dist)
+
+        # TODO publish vanish point
 
         if self.debug:
             visual.draw_vanish_point(
