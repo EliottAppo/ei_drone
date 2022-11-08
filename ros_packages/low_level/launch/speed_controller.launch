@@ -1,9 +1,9 @@
 <launch>
-
+    <!--Launch the BEBOP node
     <include file="$(find bebop_driver)/launch/bebop_node.launch">
         <arg name="ip" value="192.168.50.79"/>
     </include> 
-
+-->
     <!-- arguments -->
     <arg name="joy_dev" default="/dev/input/js0" doc="joystick device"/>
 
@@ -13,21 +13,25 @@
         <param name="dev" value="$(arg joy_dev)"/>
     </node>
 
+    <!--Visualization of the command-->
     <node pkg="low_level" type="twist2pic.py" name="twist2pic">
         <remap from="/target_vel" to="/bebop/cmd_vel"/>
     </node>
 
     <node pkg="rqt_image_view" type="rqt_image_view" name="viewer">
     </node>
-<!--  
+
+<!-- Controller Teleop 
     <node pkg="low_level" type="teleop_joy.py" name="teleop_joy">
         <remap from="/cmd_vel" to="/bebop/cmd_vel"/>
-    </node>
--->
+    </node>-->
 
+    <!-- Keyboard Teleop (and R2 on the controller for taking off)-->
     <node pkg="low_level" type="teleop2.py" name="teleop2">
         <remap from="/cmd_vel" to="/bebop/cmd_vel"/>
     </node>
+
+    <!--Speed Controller Node-->
     <node pkg="low_level" type="speed_controller.py" name="speed_controller">
         <remap from="/target_vel" to="/bebop/cmd_vel"/>
     </node>
