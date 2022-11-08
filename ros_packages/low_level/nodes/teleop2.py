@@ -15,10 +15,12 @@ class TeleopJoy2:
                                            Twist, queue_size=1)
         self.takeoff_pub = rospy.Publisher('/bebop/takeoff', Empty, queue_size=1)
         self.land_pub = rospy.Publisher('/bebop/land', Empty, queue_size=1)
+        self.hover_pub = rospy.Publisher('/hover', Empty)
         # subscriber
         self.joy_sub = rospy.Subscriber('/joy', Joy, self.joy_cb)
-        
+   
         self.flying = False
+
     def joy_cb(self, msg):
         """Compute and publish twist command."""
         # initialize message
@@ -34,6 +36,9 @@ class TeleopJoy2:
             self.cmd_vel_pub.publish(Twist())
             self.land_pub.publish(Empty())
             self.flying = False
+        
+        if msg.buttons[1] > .5:
+            self.hover_pub.publish(Empty())
        
 
 
