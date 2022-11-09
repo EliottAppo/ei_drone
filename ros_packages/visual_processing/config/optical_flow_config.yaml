@@ -1,7 +1,7 @@
 half_width: 5
 sigma: 30
 rho: 10
-median_filter_window: 300
+median_filter_window: 150
 maximum_shifts_mean: 10
 maximum_shifts_std: 5
-minimum_Y_std: 20
+minimum_Y_std: 50
