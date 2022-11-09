@@ -7,9 +7,9 @@ from behavior.msg import BehaviorStatus
 
 class Behavior:
     def __init__(self, name):
-        self.stat = False
+        self.status = False
         self.name = name
-        self.stat_mutex = Lock()
+        self.status_mutex = Lock()
 
         self.sub_behavior = rospy.Subscriber(
             '/behavior', BehaviorStatus, self.modifbehav_cb,queue_size=1,buff_size=2**22)
@@ -18,21 +18,21 @@ class Behavior:
             '/behaviors_status', BehaviorStatus, queue_size=1)
 
     def get_status(self):
-        with self.stat_mutex:
-            return self.stat
+        with self.status_mutex:
+            return self.status
 
-    def activate(self):
-        with self.stat_mutex:
-            self.stat = True
-            #print(self.stat)
-            #print(self.name)
+    def set_status(self, status):
+        with self.status_mutex:
+            self.status = status  
 
+    def on_status_on(self) :
+        pass
+        #print('Status : false -> true')
+    
+    def on_status_off(self) :
+        pass
+        #print('Status : true -> false')
 
-    def inactivate(self):
-        with self.stat_mutex:
-            self.stat = False
-            #print(self.stat)
-            #print(self.name)
 
     def modifbehav_cb(self, msg):
         #rospy.loginfo('Hello')
