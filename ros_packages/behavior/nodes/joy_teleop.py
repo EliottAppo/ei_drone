@@ -103,7 +103,7 @@ class JoyTeleop:
             self.send_command("Hover")
 
         elif self.axis_high_orthogonal(msg, AXIS_LEFT_PAD_VERTICAL, AXIS_LEFT_PAD_HORIZONTAL):
-            self.("MoveForward")
+            self.send_command("MoveForward")
 
         elif self.axis_low_orthogonal(msg, AXIS_LEFT_PAD_VERTICAL, AXIS_LEFT_PAD_HORIZONTAL):
             self.send_command("MoveBackward")
