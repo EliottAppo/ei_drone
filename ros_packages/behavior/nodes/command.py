@@ -36,12 +36,9 @@ class Scheduler:
 
 class Command:
     def __init__(self):
-        self.behaviors = ['TakeOff','Hover', 'MoveLeft',
-                          'MoveUp', 'MoveRight', 'RotateLeft']
+        self.behaviors = ['TakeOff']
         self.commands = {
-            'TakeOff': [(0,'TakeOff')],
-            'Stop': [(0, 'Hover')],
-            'Dance': [(0, 'MoveLeft'), (0, 'MoveUp'), (2.5, 'MoveRight'), (3.2, 'Hover')]
+            'TakeOff': [(0,'TakeOff')]
         }
         self.sub_command = rospy.Subscriber(
             '/command', String, self.command_cb, queue_size=1, buff_size=2**22)
@@ -62,7 +59,7 @@ class Command:
         self.deactivate()
         events = self.commands[msg.data]
         self.schedule.create_schedule(events)
-        print(self.schedule.queue)
+        
 
 
 
