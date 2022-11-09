@@ -1,7 +1,7 @@
 <launch>
     <!--Launch the BEBOP node -->
     <include file="$(find bebop_driver)/launch/bebop_node.launch">
-        <arg name="ip" value="192.168.50.79"/>
+        <arg name="ip" value="192.168.50.69"/>
     </include> 
 
     <!-- arguments -->
@@ -35,6 +35,8 @@
     <node pkg="low_level" type="speed_controller.py" name="speed_controller" output="screen">
         <remap from="/target_vel" to="/bebop/cmd_vel"/>
         <remap from="/odom" to="/bebop/odom" />
-    </node>-->
+    </node>
+
+    <node pkg="rqt_plot" type="rqt_plot" name="plot"/>
 
 </launch>
