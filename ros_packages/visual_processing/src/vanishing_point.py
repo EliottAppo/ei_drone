@@ -10,6 +10,7 @@ import visual
 
 class VanishingPointNode:
     """ Vanishing Point Node """
+
     def __init__(self):
         """ Class constructor """
         self.image_pub = rospy.Publisher(

@@ -27,16 +27,16 @@ class OpticalFlowNode:
         self.prev_Y = None  # previous Y curve
         self.to_left = None  # indicates if drone is going to the left
 
-        self.half_width = rospy.get_param("optical_flow/half_width", 5)
-        self.sigma = rospy.get_param("optical_flow/sigma", 30)
-        self.rho = rospy.get_param("optical_flow/rho", 10)
+        self.half_width = rospy.get_param("/optical_flow/half_width", 5)
+        self.sigma = rospy.get_param("/optical_flow/sigma", 30)
+        self.rho = rospy.get_param("/optical_flow/rho", 10)
         self.median_filter_window = rospy.get_param(
-            "optical_flow/median_filter_window", 100)
+            "/optical_flow/median_filter_window", 100)
         self.maximum_shifts_mean = rospy.get_param(
-            "optical_flow/maximum_shifts_mean", 10)
+            "/optical_flow/maximum_shifts_mean", 10)
         self.maximum_shifts_std = rospy.get_param(
-            "optical_flow/maximum_shifts_std", 5)
-        self.minimum_Y_std = rospy.get_param("optical_flow/minimum_Y_std", 20)
+            "/optical_flow/maximum_shifts_std", 5)
+        self.minimum_Y_std = rospy.get_param("/optical_flow/minimum_Y_std", 20)
 
     def on_odom_cb(self, msg):
         """

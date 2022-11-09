@@ -1,5 +1,5 @@
 <launch>
     <node pkg="visual_processing" type="vanishing_point.py" name="vanishing_point" output="screen">
-        <rosparam command="load" file="$(find visual_processing)/config/visual_processing.yaml" />
+        <rosparam command="load" file="$(find visual_processing)/config/vanishing_point_config.yaml" />
     </node>
 </launch>
