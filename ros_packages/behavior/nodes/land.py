@@ -1,10 +1,11 @@
-#! usr/bin/env pyhton3
+#! /usr/bin/env pyhton3
+# -*- coding: utf-8 -*-
 
 import rospy
 from behavior_class import Behavior
 from std_msgs.msg import Empty, Float32
 from behavior.msg import BehaviorStatus
-import time
+#import time
 
 
 class Land(Behavior):

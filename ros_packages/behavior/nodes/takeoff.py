@@ -3,9 +3,7 @@
 
 import rospy
 from behavior_class import Behavior
-from behavior.msg import BehaviorStatus
 from std_msgs.msg import Empty
-import time
 
 
 class TakeOff(Behavior):

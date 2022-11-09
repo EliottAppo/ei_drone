@@ -5,18 +5,17 @@
         <param name="dev" value="/dev/input/js0"/>
     </node>
 
-	<!--Launch the bebop driver -->
-	<!-- <include file="$(find bebop_driver)/launch/bebop_node.launch"> -->
-	<!-- 	<arg name="ip" value="$(arg ip)"/> -->
-	<!-- </include> -->	
+	<!-- Launch the bebop driver -->
+	<!-- <include file="$(find bebop_driver)/launch/bebop_node.launch">
+		<arg name="ip" value="$(arg ip)"/>
+	</include>	 -->
 
     <node pkg="behavior" type="joy_teleop.py" name="joy_teleop"/>
 
 	
 	<!-- <node pkg="behavior" type="b1.py" name="behavior_1"/>
 	<node pkg="behavior" type="b2.py" name="behavior_2"/> -->
-	<node pkg="behavior" type= "command.py" name="command" output="screen"/> 
-	<node pkg="behavior" type="status_viewer.py" name="status_viewer"/> 
+	<node pkg="behavior" type="command.py" name="command" output="screen"/> 
 	<node pkg="behavior" type="takeoff.py" name="takeoff"/>
 	<node pkg="behavior" type="land.py" name="land"/>
 	<node pkg="behavior" type="move_forward.py" name="move_forward"/>
