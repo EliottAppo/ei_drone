@@ -13,10 +13,21 @@
     <node pkg="behavior" type="joy_teleop.py" name="joy_teleop"/>
 
 	
-	<node pkg="behavior" type="b1.py" name="behavior_1"/>
-	<node pkg="behavior" type="b2.py" name="behavior_2"/>
-	<node pkg="behavior" type="takeoff.py" name="takeoff"/>
-	<node pkg="behavior" type="status_viewer.py" name="status_viewer"/> 
+	<!-- <node pkg="behavior" type="b1.py" name="behavior_1"/>
+	<node pkg="behavior" type="b2.py" name="behavior_2"/> -->
 	<node pkg="behavior" type= "command.py" name="command" output="screen"/> 
+	<node pkg="behavior" type="status_viewer.py" name="status_viewer"/> 
+	<node pkg="behavior" type="takeoff.py" name="takeoff"/>
+	<node pkg="behavior" type="land.py" name="land"/>
+	<node pkg="behavior" type="move_forward.py" name="move_forward"/>
+	<node pkg="behavior" type="move_up.py" name="move_up"/>
+	<node pkg="behavior" type="turn_left.py" name="turn_left"/>
+	<node pkg="behavior" type="hover.py" name="hover"/>
+	<node pkg="behavior" type="move_backward.py" name="move_backward"/>
+	<node pkg="behavior" type="move_left.py" name="move_left"/>
+	<node pkg="behavior" type="status_viewer.py" name="status_viewer"/>
+	<node pkg="behavior" type="turn_right.py" name="turn_right"/>
+	<node pkg="behavior" type="move_down.py" name="move_down"/>
+	<node pkg="behavior" type="move_right.py" name="move_right"/>
 
 </launch>

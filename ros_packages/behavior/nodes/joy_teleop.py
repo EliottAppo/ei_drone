@@ -116,7 +116,7 @@ class JoyTeleop:
 
         if self.axis_high_orthogonal(msg, AXIS_LEFT_PAD_HORIZONTAL, AXIS_LEFT_PAD_VERTICAL):
             if not self.flying:
-                self.send_command("TurnLeft")  # Move forward and then hover.
+                self.send_command("TurnLeft")  # Turn left and then hover.
                 self.flying = True
             else:
                 self.process_command(msg)
@@ -127,7 +127,7 @@ class JoyTeleop:
 
         if self.axis_high_orthogonal(msg, AXIS_LEFT_PAD_HORIZONTAL, AXIS_LEFT_PAD_VERTICAL):
             if not self.flying:
-                self.send_command("TurnRight")  # Move forward and then hover.
+                self.send_command("TurnRight")  # Turn right and then hover.
                 self.flying = True
             else:
                 self.process_command(msg)
