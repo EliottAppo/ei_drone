@@ -33,9 +33,11 @@ class Scheduler:
 
 class Command:
     def __init__(self):
-        self.behaviors = ['TakeOff', 'Land', 'Hover']
+        self.behaviors = [
+            'TakeOff', 'Land', 'Hover', 'MoveForward', 'MoveBackward', 'MoveLeft', 'MoveRight', 'MoveUp', 'MoveDown', 'TurnRight', 'TurnLeft'
+        ]
         self.commands = {
-            'TakeOff': [ (0.5, 'TakeOff')],
+            'TakeOff': [(0, 'TakeOff')],
             'Land': [(0.3, 'Hover'), (0, 'Land')],
             'Hover': [(0, 'Hover')],
             'MoveForward': [(0, 'MoveForward')],
