@@ -39,10 +39,10 @@ class Behavior:
         #print(msg.name, self.name, msg.status)
         #print("-----------")
         if msg.name == self.name and msg.status == True:
-            self.activate()
+            self.set_status(True)
 
         elif msg.name == self.name and msg.status == False:
-            self.inactivate()
+            self.set_status(False)
 
         elif msg.name == 'ping':
             ping_msg=BehaviorStatus()

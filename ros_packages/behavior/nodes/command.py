@@ -24,7 +24,7 @@ class Scheduler:
             current_time = time()
             date, name = behavior
             if current_time-self.time > date:
-                msg = BehaviorStatus
+                msg = BehaviorStatus()
                 msg.name = name
                 msg.status = True
                 self.pub_behavior.publish(msg)
@@ -58,9 +58,11 @@ class Command:
             self.pub_behavior.publish(msg)
 
     def command_cb(self, msg):
+        
         self.deactivate()
         events = self.commands[msg.data]
         self.schedule.create_schedule(events)
+        print(self.schedule.queue)
 
 
 
@@ -73,6 +75,6 @@ class Command:
 
 if __name__ == '__main__':
     rospy.init_node('command')
-    #command = Command()
-    #command.loop()
-    rospy.spin()
+    command = Command()
+    command.loop()
+    

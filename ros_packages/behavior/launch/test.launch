@@ -17,6 +17,6 @@
 	<node pkg="behavior" type="b2.py" name="behavior_2"/>
 	<node pkg="behavior" type="takeoff.py" name="takeoff"/>
 	<node pkg="behavior" type="status_viewer.py" name="status_viewer"/> 
-	<node pkg="behavior" type= "command.py" name="command"/> 
+	<node pkg="behavior" type= "command.py" name="command" output="screen"/> 
 
 </launch>
