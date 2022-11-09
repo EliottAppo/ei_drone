@@ -2,7 +2,7 @@
 <launch>
     <!--Launch the BEBOP node -->
     <include file="$(find bebop_driver)/launch/bebop_node.launch">
-        <arg name="ip" value="192.168.50.79"/>
+        <arg name="ip" value="192.168.50.69"/>
     </include> 
 
     <!-- arguments -->

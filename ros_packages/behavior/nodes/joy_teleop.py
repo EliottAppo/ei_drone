@@ -103,7 +103,7 @@ class JoyTeleop:
             self.send_command("Hover")
 
         elif self.axis_high_orthogonal(msg, AXIS_LEFT_PAD_VERTICAL, AXIS_LEFT_PAD_HORIZONTAL):
-            self.send_command("MoveForward")
+            self.("MoveForward")
 
         elif self.axis_low_orthogonal(msg, AXIS_LEFT_PAD_VERTICAL, AXIS_LEFT_PAD_HORIZONTAL):
             self.send_command("MoveBackward")
@@ -111,20 +111,24 @@ class JoyTeleop:
         elif self.axis_high_orthogonal(msg, AXIS_LEFT_PAD_HORIZONTAL, AXIS_LEFT_PAD_VERTICAL):
             self.send_command("TurnLeft")
 
-        if self.axis_low_orthogonal(msg, AXIS_LEFT_PAD_HORIZONTAL, AXIS_LEFT_PAD_VERTICAL):
+        elif self.axis_low_orthogonal(msg, AXIS_LEFT_PAD_HORIZONTAL, AXIS_LEFT_PAD_VERTICAL):
             self.send_command("TurnRight")
 
-        if self.axis_high_orthogonal(msg, AXIS_RIGHT_PAD_HORIZONTAL, AXIS_RIGHT_PAD_VERTICAL):
+        elif self.axis_high_orthogonal(msg, AXIS_RIGHT_PAD_HORIZONTAL, AXIS_RIGHT_PAD_VERTICAL):
             self.send_command("MoveLeft")
 
-        if self.axis_low_orthogonal(msg, AXIS_RIGHT_PAD_HORIZONTAL, AXIS_RIGHT_PAD_VERTICAL):
+        elif self.axis_low_orthogonal(msg, AXIS_RIGHT_PAD_HORIZONTAL, AXIS_RIGHT_PAD_VERTICAL):
             self.send_command("MoveRight")
 
-        if self.axis_high_orthogonal(msg, AXIS_RIGHT_PAD_VERTICAL, AXIS_RIGHT_PAD_HORIZONTAL):
+        elif self.axis_high_orthogonal(msg, AXIS_RIGHT_PAD_VERTICAL, AXIS_RIGHT_PAD_HORIZONTAL):
             self.send_command("MoveUp")
 
-        if self.axis_low_orthogonal(msg, AXIS_RIGHT_PAD_VERTICAL, AXIS_RIGHT_PAD_HORIZONTAL):
-            self.send_command("MoveDown")
+        elif self.axis_high(msg, AXIS_CROSS_HORIZONTAL):
+            self.send_command("UTurnLeft")
+
+        elif self.axis_low(msg, AXIS_CROSS_HORIZONTAL):
+            self.send_command("UTurnRight")
+
 
 
 if __name__ == '__main__':

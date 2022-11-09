@@ -16,7 +16,7 @@ class SpeedController:
         self.current_velocity = Twist()
 
         #Publisher
-        self.gathered_vel_pub = rospy.Publisher('/target_vel', Twist, queue_size=1)
+        self.gathered_vel_pub = rospy.Publisher('/bebop/cmd_vel', Twist, queue_size=1)
         
         #Subscriber
         self.linear_x_sub = rospy.Subscriber('/linear_x', Float32, self.linear_x_cb)
@@ -26,7 +26,7 @@ class SpeedController:
 
         self.hover_mode = rospy.Subscriber('/hover', Empty, self.hover_cb)
 
-        self.odom_sub = rospy.Subscriber('/odom', Odometry, self.odom_cb)
+        self.odom_sub = rospy.Subscriber('/bebop/odom', Odometry, self.odom_cb)
 
         #Variables
         self.gathered_vel_msg = Twist()
