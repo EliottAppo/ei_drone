@@ -90,52 +90,6 @@ class JoyTeleop:
             self.send_command("Land")
             self.flying = False
 
-        if self.axis_high_orthogonal(msg, AXIS_LEFT_PAD_VERTICAL, AXIS_LEFT_PAD_HORIZONTAL):
-            if not self.flying:
-                # Move forward and then hover.
-                self.send_command("MoveForward")
-                self.flying = True
-            else:
-                self.process_command(msg)
-        elif self.flying:
-            # Otherwise we hover
-            self.send_command("Hover")
-            self.flying = False
-
-        if self.axis_low_orthogonal(msg, AXIS_LEFT_PAD_VERTICAL, AXIS_LEFT_PAD_HORIZONTAL):
-            if not self.flying:
-                # Move backward and then hover.
-                self.send_command("MoveBackward")
-                self.flying = True
-            else:
-                self.process_command(msg)
-        elif self.flying:
-            # Otherwise we hover
-            self.send_command("Hover")
-            self.flying = False
-
-        if self.axis_high_orthogonal(msg, AXIS_LEFT_PAD_HORIZONTAL, AXIS_LEFT_PAD_VERTICAL):
-            if not self.flying:
-                self.send_command("TurnLeft")  # Turn left and then hover.
-                self.flying = True
-            else:
-                self.process_command(msg)
-        elif self.flying:
-            # Otherwise we hover
-            self.send_command("Hover")
-            self.flying = False
-
-        if self.axis_high_orthogonal(msg, AXIS_LEFT_PAD_HORIZONTAL, AXIS_LEFT_PAD_VERTICAL):
-            if not self.flying:
-                self.send_command("TurnRight")  # Turn right and then hover.
-                self.flying = True
-            else:
-                self.process_command(msg)
-        elif self.flying:
-            # Otherwise we hover
-            self.send_command("Hover")
-            self.flying = False
-
     def process_command(self, msg):
 
         # Use one of the following method to detect the user actions and send a command accordingly.
@@ -148,10 +102,29 @@ class JoyTeleop:
         if self.clicked(msg, BUTTON_A):
             self.send_command("Hover")
 
-        if self.axis_high(msg, AXIS_LEFT_PAD_VERTICAL):
+        elif self.axis_high_orthogonal(msg, AXIS_LEFT_PAD_VERTICAL, AXIS_LEFT_PAD_HORIZONTAL):
             self.send_command("MoveForward")
 
-        # add yours hereafter...
+        elif self.axis_low_orthogonal(msg, AXIS_LEFT_PAD_VERTICAL, AXIS_LEFT_PAD_HORIZONTAL):
+            self.send_command("MoveBackward")
+
+        elif self.axis_high_orthogonal(msg, AXIS_LEFT_PAD_HORIZONTAL, AXIS_LEFT_PAD_VERTICAL):
+            self.send_command("TurnLeft")
+
+        if self.axis_low_orthogonal(msg, AXIS_LEFT_PAD_HORIZONTAL, AXIS_LEFT_PAD_VERTICAL):
+            self.send_command("TurnRight")
+
+        if self.axis_high_orthogonal(msg, AXIS_RIGHT_PAD_HORIZONTAL, AXIS_RIGHT_PAD_VERTICAL):
+            self.send_command("MoveLeft")
+
+        if self.axis_low_orthogonal(msg, AXIS_RIGHT_PAD_HORIZONTAL, AXIS_RIGHT_PAD_VERTICAL):
+            self.send_command("MoveRight")
+
+        if self.axis_high_orthogonal(msg, AXIS_RIGHT_PAD_VERTICAL, AXIS_RIGHT_PAD_HORIZONTAL):
+            self.send_command("MoveUp")
+
+        if self.axis_low_orthogonal(msg, AXIS_RIGHT_PAD_VERTICAL, AXIS_RIGHT_PAD_HORIZONTAL):
+            self.send_command("MoveDown")
 
 
 if __name__ == '__main__':
