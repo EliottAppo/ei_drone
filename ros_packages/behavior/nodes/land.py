@@ -13,13 +13,12 @@ class Land(Behavior):
         self.pub_land = rospy.Publisher('/bebop/land', Empty, queue_size=1)
 
     def on_status_on(self):
-        msg = Empty()
-        self.pub_land.publish(msg)
+        self.pub_land.publish(Empty())
 
 
 def main():
     rospy.init_node('Land')
-    behavior = Land()
+    Land()
     rospy.spin()
 
 

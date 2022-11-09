@@ -7,21 +7,23 @@ from behavior.msg import BehaviorStatus
 from std_msgs.msg import Empty
 import time
 
+
 class TakeOff(Behavior):
     def __init__(self):
         super().__init__('TakeOff')
-        self.pub_takeoff = rospy.Publisher('/bebop/takeoff', Empty, queue_size=1)
-
+        self.pub_takeoff = rospy.Publisher(
+            '/bebop/takeoff', Empty, queue_size=1)
 
     def on_status_on(self):
-        msg=Empty()
+        msg = Empty()
         self.pub_takeoff.publish(msg)
 
 
 def main():
-	rospy.init_node('takeoff')
-	behavior = TakeOff()
-	rospy.spin()
+    rospy.init_node('takeoff')
+    behavior = TakeOff()
+    rospy.spin()
+
 
 if __name__ == '__main__':
     main()

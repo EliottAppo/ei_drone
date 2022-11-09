@@ -12,7 +12,7 @@ class Behavior:
         self.status_mutex = Lock()
 
         self.sub_behavior = rospy.Subscriber(
-            '/behavior', BehaviorStatus, self.modifbehav_cb,queue_size=1,buff_size=2**22)
+            '/behavior', BehaviorStatus, self.modifbehav_cb, queue_size=1, buff_size=2**22)
 
         self.pub_ping = rospy.Publisher(
             '/behaviors_status', BehaviorStatus, queue_size=1)
@@ -23,27 +23,26 @@ class Behavior:
 
     def set_status(self, status):
         with self.status_mutex:
-            self.status = status 
+            self.status = status
 
         if status:
             self.on_status_on()
         else:
             self.on_status_off()
 
-    def on_status_on(self) :
+    def on_status_on(self):
         pass
         #print('Status : false -> true')
-    
-    def on_status_off(self) :
+
+    def on_status_off(self):
         pass
         #print('Status : true -> false')
 
-
     def modifbehav_cb(self, msg):
-        #rospy.loginfo('Hello')
+        # rospy.loginfo('Hello')
         #print(msg.name, self.name, msg.status)
-        #print("-----------")
-        #print("coucou")
+        # print("-----------")
+        # print("coucou")
         if msg.name == self.name and msg.status:
             self.set_status(True)
 
@@ -51,7 +50,7 @@ class Behavior:
             self.set_status(False)
 
         elif msg.name == 'ping':
-            ping_msg=BehaviorStatus()
+            ping_msg = BehaviorStatus()
             ping_msg.status = self.get_status()
             ping_msg.name = self.name
             self.pub_ping.publish(ping_msg)
