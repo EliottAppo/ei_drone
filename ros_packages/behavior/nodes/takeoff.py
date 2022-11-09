@@ -16,8 +16,6 @@ class TakeOff(Behavior):
     def on_status_on(self):
         msg=Empty()
         self.pub_takeoff.publish(msg)
-        time.sleep(2)
-        self.set_status(False)
 
 
 def main():
