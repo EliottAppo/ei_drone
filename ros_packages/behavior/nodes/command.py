@@ -34,7 +34,7 @@ class Scheduler:
 class Command:
     def __init__(self):
         self.behaviors = [
-            "TakeOff", "Land", "Hover", "MoveForward", "MoveBackward", "MoveLeft", "MoveRight", "MoveUp", "MoveDown", "TurnRight", "TurnLeft", "UTurnRight", "UTurnLeft", "AlignCorridor"
+            "TakeOff", "Land", "Hover", "MoveForward", "MoveBackward", "MoveLeft", "MoveRight", "MoveUp", "MoveDown", "TurnRight", "TurnLeft", "UTurnRight", "UTurnLeft", "SlideLeft", "AlignCorridor"
         ]
         self.commands = {
             "TakeOff": [(0, "TakeOff")],
@@ -50,7 +50,9 @@ class Command:
             "TurnLeft": [(0, "TurnLeft")],
             "UTurnRight": [(0, "Hover"), (0.1, "TurnRight"), (6.5, "Hover")],
             "UTurnLeft": [(0, "Hover"), (0.1, "TurnLeft"), (6.5, "Hover")],
+            "SlideLeft": [(0, "SlideLeft")],
             "AlignCorridor": [(0, "AlignCorridor")]
+
         }
         self.sub_command = rospy.Subscriber(
             "/command", String, self.command_cb, queue_size=1, buff_size=2**22)
