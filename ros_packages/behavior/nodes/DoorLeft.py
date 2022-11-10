@@ -22,6 +22,10 @@ class Door:
     def reset_detection(self):
         with self.door_exists_mutex:
             self.door_exists = False
+    
+    def door_existed(self):
+        # TODO
+        pass 
 
     def loop(self):
         while not rospy.is_shutdown():
