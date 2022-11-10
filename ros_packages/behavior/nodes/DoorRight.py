@@ -3,10 +3,10 @@
 import rospy
 from std_msgs.msg import String, Bool
 from multiprocessing import Lock
-from slideleft import SlideLeft
+from slideleft import SlideRight
 
 
-class DoorLeft(SlideLeft):
+class DoorRight(SlideRight):
     def __init__(self):
         self.door_exists = False
         self.door_exists_mutex = Lock()
@@ -51,8 +51,8 @@ class DoorLeft(SlideLeft):
 
 
 def main():
-    rospy.init_node("DoorLeft")
-    behavior = DoorLeft()
+    rospy.init_node("DoorRight")
+    behavior = DoorRight()
     behavior.loop()
 
 
