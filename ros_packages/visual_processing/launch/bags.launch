@@ -1,0 +1,4 @@
+<launch>
+    <include file="$(find visual_processing)/launch/door_bags.launch"/>
+    <include file="$(find visual_processing)/launch/corridor_bags.launch"/>
+</launch>

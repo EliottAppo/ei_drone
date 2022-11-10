@@ -1,0 +1,5 @@
+min_len: 30
+max_angle: 75
+min_angle: 15
+sci_value: 0.3
+min_dist: 3

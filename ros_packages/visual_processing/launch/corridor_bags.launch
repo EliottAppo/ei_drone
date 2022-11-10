@@ -1,0 +1,5 @@
+<launch>
+    <arg name="path" default="/home/hanna/Desktop/EI-Drone-Project/" />
+    <arg name="file" default="corridor" />
+    <node pkg="rosbag" type="play" name="corridor_bags" args="--clock $(arg path)$(arg file).bag"/>
+</launch>
