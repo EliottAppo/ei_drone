@@ -11,7 +11,7 @@ class MoveForward(Behavior):
         self.pub_linear_x = rospy.Publisher("/linear_x", Float32, queue_size=1)
 
     def on_status_on(self):
-        self.pub_linear_x.publish(0.2)
+        self.pub_linear_x.publish(0.5)
 
 
 def main():

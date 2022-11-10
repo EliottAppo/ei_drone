@@ -134,7 +134,7 @@ class JoyTeleop:
             self.send_command("SlideLeft")
 
         elif self.axis_low(msg, AXIS_LEFT_FRONT):
-            self.send_command("AlignCorridor")
+            self.send_command("MoveVP")
             self.corridor_mode_flag = True
 
         elif self.corridor_mode_flag and self.axis_high(msg, AXIS_LEFT_FRONT):
