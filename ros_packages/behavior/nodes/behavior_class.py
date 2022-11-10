@@ -5,6 +5,7 @@ from multiprocessing import Lock
 from behavior.msg import BehaviorStatus
 
 
+
 class Behavior:
     def __init__(self, name):
         self.status = False
