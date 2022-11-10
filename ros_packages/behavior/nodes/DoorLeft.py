@@ -27,7 +27,7 @@ class Door:
         while not rospy.is_shutdown():
             if self.door_existed():
                 self.reset_detection()
-                self.pub_command.publish('Cross')
+                self.pub_command.publish('CrossDoor')
             else:
                 #continue flying in corridor
                 pass
