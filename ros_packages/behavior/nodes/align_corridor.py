@@ -17,8 +17,8 @@ class AlignCorridor(Behavior):
         self.vp_coordinates_mutex = Lock()
         self.first_run = True
 
-        img_width, img_height = 640, 368
-        self.frame_center = np.array([img_width / 2 - 20, img_height / 2])
+        img_width, img_height = 856, 480
+        self.frame_center = np.array([img_width / 2 , img_height / 2])
 
         # "self.alpha" represents the coefficient for the exponentially weighted moving average
         # applied on the vanishing point coordinates
@@ -31,8 +31,6 @@ class AlignCorridor(Behavior):
             "/vanishing_point/point_result", VanishingPoint, self.vanishing_point_cb)
         self.angular_z_pub = rospy.Publisher(
             "/angular_z", Float32, queue_size=1)
-        self.linear_y_pub = rospy.Publisher(
-            "/linear_y", Float32, queue_size=1)
 
 
     def get_vp_coordinates_from_msg(self, msg):
@@ -67,11 +65,9 @@ class AlignCorridor(Behavior):
                         # Vanishing point too much on the left, rotate in the counterclockwise sense
                         if vp_coordinates[0] < self.frame_center[0]:
                             self.angular_z_pub.publish(self.angular_z_vel)
-                            self.linear_y_pub.publish(-self.linear_y_vel)
                         # Vanishing point too much on the right, rotate in the clockwise sense
                         elif vp_coordinates[0] > self.frame_center[0]:
                             self.angular_z_pub.publish(-self.angular_z_vel)
-                            self.linear_y_pub.publish(self.linear_y_vel)
 
 
                 else:

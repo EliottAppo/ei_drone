@@ -39,7 +39,7 @@ class JoyTeleop:
         self.cmd_pub = rospy.Publisher("/command", String, queue_size=1)
         self.axis_tolerance = 0.75
         self.flying = False
-        self.corridor_mode_flag = False
+        self.logical_mode_flag = False
 
     def send_command(self, cmd):
         cmd_msg = String()
@@ -103,6 +103,16 @@ class JoyTeleop:
         if self.clicked(msg, BUTTON_A):
             self.send_command("Hover")
 
+        elif self.axis_low(msg, AXIS_LEFT_FRONT):
+            if self.axis_high_orthogonal(msg, AXIS_LEFT_PAD_VERTICAL, AXIS_LEFT_PAD_HORIZONTAL):
+                self.send_command("MoveVP")
+                self.logical_mode_flag = True
+
+        elif self.logical_mode_flag and self.axis_high(msg, AXIS_LEFT_FRONT):
+            self.send_command("Hover")
+
+            self.logical_mode_flag = False
+
         elif self.axis_high_orthogonal(msg, AXIS_LEFT_PAD_VERTICAL, AXIS_LEFT_PAD_HORIZONTAL):
             self.send_command("MoveForward")
 
@@ -133,13 +143,8 @@ class JoyTeleop:
         elif self.clicked(msg, BUTTON_B):
             self.send_command("SlideLeft")
 
-        elif self.axis_low(msg, AXIS_LEFT_FRONT):
-            self.send_command("AlignCorridor")
-            self.corridor_mode_flag = True
 
-        elif self.corridor_mode_flag and self.axis_high(msg, AXIS_LEFT_FRONT):
-            self.send_command("Hover")
-            self.corridor_mode_flag = False
+        
 
 
 if __name__ == '__main__':

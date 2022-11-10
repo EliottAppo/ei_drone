@@ -20,8 +20,8 @@ class SlideLeft(Behavior):
     def on_status_on(self):       
         
         self.pub_linear_x.publish(0.5)
-        self.pub_angular_z.publish(0.3)
-        self.sleep = sleep(3)
+        self.pub_angular_z.publish(3)
+        self.sleep = sleep(1)
         self.pub_linear_x.publish(0.0)
         self.pub_angular_z.publish(0.0)
         self.pub_linear_y.publish(-0.5)
