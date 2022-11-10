@@ -34,7 +34,7 @@ class Scheduler:
 class Command:
     def __init__(self):
         self.behaviors = [
-            "TakeOff", "Land", "Hover", "MoveForward", "MoveBackward", "MoveLeft", "MoveRight", "MoveUp", "MoveDown", "TurnRight", "TurnLeft", "UTurnRight", "UTurnLeft", "SlideLeft", "AlignCorridor", "CenterCorridor", "MoveForwardVp"
+            "TakeOff", "Land", "Hover", "MoveForward", "MoveBackward", "MoveLeft", "MoveRight", "MoveUp", "MoveDown", "TurnRight", "TurnLeft", "UTurnRight", "UTurnLeft", "SlideLeft", "SlideRight", "AlignCorridor", "CenterCorridor", "MoveForwardVp"
         ]
         self.commands = {
             "TakeOff": [(0, "TakeOff")],
@@ -51,6 +51,7 @@ class Command:
             "UTurnRight": [(0, "Hover"), (0.1, "TurnRight"), (6.5, "Hover")],
             "UTurnLeft": [(0, "Hover"), (0.1, "TurnLeft"), (6.5, "Hover")],
             "SlideLeft": [(0, "SlideLeft")],
+            "SlideRight": [(0, "SlideRight")],
             "MoveVP": [(0, "AlignCorridor"), (0.1, "CenterCorridor"), (1.5, "MoveForwardVp")],
             "CrossDoor": [(0, "Hover"), (0.1, "MoveForward")]
         }

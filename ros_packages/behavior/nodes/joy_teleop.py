@@ -140,11 +140,13 @@ class JoyTeleop:
         elif self.axis_low(msg, AXIS_CROSS_HORIZONTAL):
             self.send_command("UTurnRight")
 
-        elif self.clicked(msg, BUTTON_B):
+        elif self.clicked(msg, BUTTON_X):
             self.send_command("SlideLeft")
 
+        elif self.clicked(msg, BUTTON_B):
+            self.send_command("SlideRight")
 
-        
+
 
 
 if __name__ == '__main__':
