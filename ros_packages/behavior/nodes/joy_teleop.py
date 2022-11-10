@@ -129,6 +129,9 @@ class JoyTeleop:
         elif self.axis_low(msg, AXIS_CROSS_HORIZONTAL):
             self.send_command("UTurnRight")
 
+        elif self.axis_low(msg, AXIS_LEFT_FRONT):
+            self.send_command("AlignCorridor")
+
 
 
 if __name__ == '__main__':

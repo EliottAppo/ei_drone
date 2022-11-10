@@ -12,9 +12,6 @@
 
     <node pkg="behavior" type="joy_teleop.py" name="joy_teleop"/>
 
-	
-	<!-- <node pkg="behavior" type="b1.py" name="behavior_1"/>
-	<node pkg="behavior" type="b2.py" name="behavior_2"/> -->
 	<node pkg="behavior" type="command.py" name="command" output="screen"/> 
 	<node pkg="behavior" type="takeoff.py" name="takeoff"/>
 	<node pkg="behavior" type="land.py" name="land"/>
@@ -29,9 +26,4 @@
 	<node pkg="behavior" type="move_down.py" name="move_down"/>
 	<node pkg="behavior" type="move_right.py" name="move_right"/>
 	<node pkg="behavior" type="align_corridor.py" name="align_corridor"/>
-
-
-	<node pkg="low_level" type="speed_controller.py" name="speed_controller"/>
-
-	<include file="$(find visual_processing_lib)/launch/vanishing_point.launch"/>
 </launch>

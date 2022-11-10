@@ -54,9 +54,3 @@ class Behavior:
             ping_msg.status = self.get_status()
             ping_msg.name = self.name
             self.pub_ping.publish(ping_msg)
-
-
-if __name__ == '__main__':
-    rospy.init_node('behavior')
-    behavior = Behavior()
-    behavior.loop()

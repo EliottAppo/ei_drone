@@ -34,27 +34,28 @@ class Scheduler:
 class Command:
     def __init__(self):
         self.behaviors = [
-            'TakeOff', 'Land', 'Hover', 'MoveForward', 'MoveBackward', 'MoveLeft', 'MoveRight', 'MoveUp', 'MoveDown', 'TurnRight', 'TurnLeft','UTurnRight','UTurnLeft'
+            "TakeOff", "Land", "Hover", "MoveForward", "MoveBackward", "MoveLeft", "MoveRight", "MoveUp", "MoveDown", "TurnRight", "TurnLeft", "UTurnRight", "UTurnLeft"
         ]
         self.commands = {
-            'TakeOff': [(0, 'TakeOff')],
-            'Land': [(0.3, 'Hover'), (0, 'Land')],
-            'Hover': [(0, 'Hover')],
-            'MoveForward': [(0, 'MoveForward')],
-            'MoveBackward': [(0, 'MoveBackward')],
-            'MoveLeft': [(0, 'MoveLeft')],
-            'MoveRight': [(0, 'MoveRight')],
-            'MoveUp': [(0, 'MoveUp')],
-            'MoveDown': [(0, 'MoveDown')],
-            'TurnRight': [(0, 'TurnRight')],
-            'TurnLeft': [(0, 'TurnLeft')],
-            'UTurnRight': [(0, 'Hover'), (0.1, 'TurnRight'), (6.5, 'Hover')],
-            'UTurnLeft': [(0, 'Hover'), (0.1, 'TurnLeft'), (6.5, 'Hover')]
+            "TakeOff": [(0, "TakeOff")],
+            "Land": [(0.3, "Hover"), (0, "Land")],
+            "Hover": [(0, "Hover")],
+            "MoveForward": [(0, "MoveForward")],
+            "MoveBackward": [(0, "MoveBackward")],
+            "MoveLeft": [(0, "MoveLeft")],
+            "MoveRight": [(0, "MoveRight")],
+            "MoveUp": [(0, "MoveUp")],
+            "MoveDown": [(0, "MoveDown")],
+            "TurnRight": [(0, "TurnRight")],
+            "TurnLeft": [(0, "TurnLeft")],
+            "UTurnRight": [(0, "Hover"), (0.1, "TurnRight"), (6.5, "Hover")],
+            "UTurnLeft": [(0, "Hover"), (0.1, "TurnLeft"), (6.5, "Hover")],
+            "AlignCorridor": [(2, "AlignCorridor")]
         }
         self.sub_command = rospy.Subscriber(
-            '/command', String, self.command_cb, queue_size=1, buff_size=2**22)
+            "/command", String, self.command_cb, queue_size=1, buff_size=2**22)
         self.pub_behavior = rospy.Publisher(
-            '/behavior', BehaviorStatus, queue_size=1)
+            "/behavior", BehaviorStatus, queue_size=1)
 
         self.schedule = Scheduler(self.pub_behavior)
 
@@ -77,7 +78,7 @@ class Command:
             rospy.sleep(0.1)
 
 
-if __name__ == '__main__':
-    rospy.init_node('command')
+if __name__ == "__main__":
+    rospy.init_node("command")
     command = Command()
     command.loop()
