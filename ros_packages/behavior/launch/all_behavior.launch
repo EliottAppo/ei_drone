@@ -1,14 +1,7 @@
 <launch>
-	<arg name="ip" default="192.168.50.69" doc="The IP of your drone"/>
-
     <node pkg="joy" type="joy_node" name="joy_node">
         <param name="dev" value="/dev/input/js0"/>
     </node>
-
-	<!-- Launch the bebop driver -->
-	<include file="$(find bebop_driver)/launch/bebop_node.launch">
-		<arg name="ip" value="$(arg ip)"/>
-	</include>	 
 
     <node pkg="behavior" type="joy_teleop.py" name="joy_teleop"/>
 

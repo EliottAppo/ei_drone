@@ -39,6 +39,7 @@ class JoyTeleop:
         self.cmd_pub = rospy.Publisher("/command", String, queue_size=1)
         self.axis_tolerance = 0.75
         self.flying = False
+        self.corridor_mode_flag = False
 
     def send_command(self, cmd):
         cmd_msg = String()
@@ -131,6 +132,11 @@ class JoyTeleop:
 
         elif self.axis_low(msg, AXIS_LEFT_FRONT):
             self.send_command("AlignCorridor")
+            self.corridor_mode_flag = True
+
+        elif self.corridor_mode_flag and self.axis_high(msg, AXIS_LEFT_FRONT):
+            self.send_command("Hover")
+            self.corridor_mode_flag = False
 
 
 
