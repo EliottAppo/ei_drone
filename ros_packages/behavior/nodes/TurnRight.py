@@ -7,9 +7,9 @@ from slideright import SlideRight
 from visual_processing.msg import VanishingPoint
 
 
-class TurnRight(SlideRight):
+class Turn_Right(SlideRight):
     def __init__(self):
-        super().__init__("TurnRight")
+        super().__init__("Turn_Right")
         self.detect_corridor = False
         self.detect_corridor_mutex = Lock()
         # 'self.vp_count' stores how many vanishing points were detected consecutively, while
@@ -59,8 +59,8 @@ class TurnRight(SlideRight):
 
 
 def main():
-    rospy.init_node("TurnRight")
-    behavior = TurnRight()
+    rospy.init_node("Turn_Right")
+    behavior = Turn_Right()
     behavior.loop()
 
 

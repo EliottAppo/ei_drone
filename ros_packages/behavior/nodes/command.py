@@ -34,7 +34,7 @@ class Scheduler:
 class Command:
     def __init__(self):
         self.behaviors = [
-            "TakeOff", "Land", "Hover", "MoveForward", "MoveBackward", "MoveLeft", "MoveRight", "MoveUp", "MoveDown", "TurnRight", "TurnLeft", "UTurnRight", "UTurnLeft", "SlideLeft", "SlideRight", "AlignCorridor", "CenterCorridor", "MoveForwardVp"
+            "TakeOff", "Land", "Hover", "MoveForward", "MoveBackward", "MoveLeft", "MoveRight", "MoveUp", "MoveDown", "TurnRight", "TurnLeft", "UTurnRight", "UTurnLeft", "SlideLeft", "SlideRight", "AlignCorridor", "CenterCorridor", "MoveForwardVp","Turn_Left","Turn_Right","DoorLeft","DoorRight"
         ]
         self.commands = {
             "TakeOff": [(0, "TakeOff")],
@@ -50,10 +50,16 @@ class Command:
             "TurnLeft": [(0, "TurnLeft")],
             "UTurnRight": [(0, "Hover"), (0.1, "TurnRight"), (6.5, "Hover")],
             "UTurnLeft": [(0, "Hover"), (0.1, "TurnLeft"), (6.5, "Hover")],
+            "TurnBackRight" : [(0, "AlignCorridor"), (0.01, "CenterCorridor"),(0.5, "Hover"), (2, "UTurnRight"),(4, "AlignCorridor"), (4.1, "CenterCorridor"), (5.5, "MoveForwardVp")],
+            "TurnBackLeft" : [(0, "AlignCorridor"), (0.1, "CenterCorridor"),(0.5, "Hover"), (2, "UTurnLeft"),(4, "AlignCorridor"), (4.1, "CenterCorridor"), (5.5, "MoveForwardVp")],
             "SlideLeft": [(0, "SlideLeft")],
             "SlideRight": [(0, "SlideRight")],
             "MoveVP": [(0, "AlignCorridor"), (0.1, "CenterCorridor"), (1.5, "MoveForwardVp")],
-            "CrossDoor": [(0, "Hover"), (0.1, "MoveForward")]
+            "CrossDoor": [(0, "Hover"), (0.1, "MoveForward"),(1.5,"Hover")],
+            "Turn_Left":[(0,"Turn_Left")],
+            "Turn_Right":[(0,"Turn_Right")],
+            "DoorLeft":[(0,"DoorLeft")],
+            "DoorRight":[(0,"DoorRight")]
         }
         self.sub_command = rospy.Subscriber(
             "/command", String, self.command_cb, queue_size=1, buff_size=2**22)

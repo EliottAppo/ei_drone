@@ -104,6 +104,7 @@ class JoyTeleop:
             self.send_command("Hover")
 
         elif self.axis_low(msg, AXIS_LEFT_FRONT):
+            # in logical mode
             if self.axis_high_orthogonal(msg, AXIS_LEFT_PAD_VERTICAL, AXIS_LEFT_PAD_HORIZONTAL):
                 self.send_command("MoveVP")
                 self.logical_mode_flag = True
