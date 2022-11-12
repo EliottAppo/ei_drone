@@ -30,8 +30,8 @@ class TurnLeft(SlideLeft):
             else:  # If we receive at least one vp_exists = False, makes the counter go back to 0
                 self.vp_count = 0
         if self.vp_count >= self.vp_min_count:
-            with self.corridor_detected_mutex:
-                self.corridor_detected = True
+            with self.detect_corridor_mutex:
+                self.detect_corridor = True
 
     def get_corridor_detected(self):
         with self.detect_corridor_mutex:
@@ -40,21 +40,21 @@ class TurnLeft(SlideLeft):
     def reset_detection(self):
         with self.vp_count_mutex:
             self.vp_count = 0
-        with self.corridor_detected_mutex:
-            self.corridor_detected = False
+        with self.detect_corridor_mutex:
+            self.detect_corridor = False
 
     def loop(self):
         while not rospy.is_shutdown():
             if self.get_status():
                 if self.get_corridor_detected():
                     self.reset_detection()
-                    self.inactivate()
+                    self.set_status(False)
                     self.pub_command.publish('MoveVP')
                 else:
                     # NOTE: this is in open loop. In closed loop we have to get x,y,z speeds from the loop feedback
-                    self.linear_x_pub.publish(0)
-                    self.linear_y_pub.publish(-0.5)
-                    self.angular_z_pub.publish(0)
+                    self.pub_linear_x.publish(0)
+                    self.pub_linear_y.publish(-0.5)
+                    self.pub_angular_z.publish(0)
                     rospy.sleep(0.1)
 
 

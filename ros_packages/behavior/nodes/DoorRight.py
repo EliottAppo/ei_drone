@@ -3,7 +3,7 @@
 import rospy
 from std_msgs.msg import String, Bool
 from multiprocessing import Lock
-from slideleft import SlideRight
+from slideright import SlideRight
 
 
 class DoorRight(SlideRight):
@@ -22,8 +22,8 @@ class DoorRight(SlideRight):
             if msg.data:
                 self.door_count += 1
         if self.door_count >= self.door_min_count:
-            with self.corridor_detected_mutex:
-                self.corridor_detected = True
+            with self.door_exists_mutex:
+                self.door_exists = True
 
     def door_existed(self):
         with self.door_exists_mutex:
@@ -40,13 +40,13 @@ class DoorRight(SlideRight):
             if self.get_status():
                 if self.door_existed():
                     self.reset_detection()
-                    self.inactivate()
+                    self.set_status(False)
                     self.pub_command.publish('CrossDoor')
             else:
                 # NOTE: this is in open loop. In closed loop we have to get x,y,z speeds from the loop feedback
-                self.linear_x_pub.publish(0)
-                self.linear_y_pub.publish(-0.5)
-                self.angular_z_pub.publish(0)
+                self.pub_linear_x.publish(0)
+                self.pub_linear_y.publish(0.5)
+                self.pub_angular_z.publish(0)
                 rospy.sleep(0.1)
 
 
