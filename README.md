@@ -2,10 +2,10 @@
 
 ## Team members
 
--   Eliott DUMONT
--   Hanna OBEID
--   Nour EL HASSAN
--   Samer LAHOUD
+-   **Eliott DUMONT**
+-   **Hanna OBEID**
+-   **Nour EL HASSAN**
+-   **Samer LAHOUD**
 
 <br />
 <br />
