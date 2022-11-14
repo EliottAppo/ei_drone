@@ -36,7 +36,7 @@ class Scheduler:
 class Command:
     def __init__(self):
         self.behaviors = [
-            "TakeOff", "Land", "Hover", "MoveForward", "MoveBackward", "MoveLeft", "MoveRight", "MoveUp", "MoveDown", "TurnRight", "TurnLeft", "UTurnRight", "UTurnLeft", "SlideLeft", "SlideRight", "AlignCorridor", "CenterCorridor", "MoveForwardVp","Turn_Left","Turn_Right","DoorLeft","DoorRight"
+            "TakeOff", "Land", "Hover", "MoveForward", "MoveBackward", "MoveLeft", "MoveRight", "MoveUp", "MoveDown", "TurnRight", "TurnLeft", "UTurnRight", "UTurnLeft", "SlideLeft", "SlideRight", "AlignCorridor", "CenterCorridor", "MoveForwardVp","Logical_TurnLeft","Logical_TurnRight","DoorLeft","DoorRight"
         ]
         self.commands = {
             "TakeOff": [(0, "TakeOff")],
@@ -58,8 +58,8 @@ class Command:
             "SlideRight": [(0, "SlideRight")],
             "MoveVP": [(0, "AlignCorridor"), (0.1, "CenterCorridor"), (1.5, "MoveForwardVp")],
             "CrossDoor": [(0, "Hover"), (0.1, "MoveForward"),(1.5,"Hover")],
-            "Turn_Left":[(0,"Turn_Left")],
-            "Turn_Right":[(0,"Turn_Right")],
+            "Logical_TurnLeft":[(0,"Logical_TurnLeft")],
+            "Logical_TurnRight":[(0,"Logical_TurnRight")],
             "DoorLeft":[(0,"DoorLeft")],
             "DoorRight":[(0,"DoorRight")]
         }

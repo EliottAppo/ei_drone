@@ -110,10 +110,10 @@ class JoyTeleop:
                 self.send_command("MoveVP")
 
             if self.axis_high_orthogonal(msg,AXIS_LEFT_PAD_HORIZONTAL,AXIS_LEFT_PAD_VERTICAL):
-                self.send_command("Turn_Left")
+                self.send_command("Logical_TurnLeft")
             
             if self.axis_low_orthogonal(msg,AXIS_CROSS_HORIZONTAL,AXIS_CROSS_VERTICAL):
-                self.send_command("Turn_Right")
+                self.send_command("Logical_TurnRight")
 
             if self.axis_high_orthogonal(msg,AXIS_RIGHT_PAD_HORIZONTAL,AXIS_RIGHT_PAD_VERTICAL):
                 self.send_command("DoorLeft")

@@ -4,13 +4,13 @@
 import rospy
 from std_msgs.msg import String
 from multiprocessing import Lock
-from slideright import SlideRight
+from slideleft import SlideLeft
 from visual_processing.msg import VanishingPoint
 
 
-class Turn_Right(SlideRight):
+class Logical_TurnLeft(SlideLeft):
     def __init__(self):
-        super().__init__("Turn_Right")
+        super().__init__()
         self.detect_corridor = False
         self.detect_corridor_mutex = Lock()
         # 'self.vp_count' stores how many vanishing points were detected consecutively, while
@@ -54,14 +54,14 @@ class Turn_Right(SlideRight):
                 else:
                     # NOTE: this is in open loop. In closed loop we have to get x,y,z speeds from the loop feedback
                     self.pub_linear_x.publish(0)
-                    self.pub_linear_y.publish(0.5)
+                    self.pub_linear_y.publish(-0.5)
                     self.pub_angular_z.publish(0)
                     rospy.sleep(0.1)
 
 
 def main():
-    rospy.init_node("Turn_Right")
-    behavior = Turn_Right()
+    rospy.init_node("Turn_Left")
+    behavior = Logical_TurnLeft()
     behavior.loop()
 
 
