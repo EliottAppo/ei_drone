@@ -12,6 +12,9 @@
     <!-- Launch vansishing point -->
 	<include file="$(find visual_processing)/launch/vanishing_point.launch"/>
 
+    <!-- Launch Optical Flow -->
+	<include file="$(find visual_processing)/launch/optical_flow.launch"/>
+
     <!-- Run low level speed_controller -->
 	<node pkg="low_level" type="speed_controller.py" name="speed_controller"/>
 </launch>
