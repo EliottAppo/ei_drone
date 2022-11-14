@@ -36,6 +36,10 @@ class DoorLeft(SlideLeft):
             self.door_count = 0
         with self.door_exists_mutex:
             self.door_exists = False
+    
+    def door_existed(self):
+        # TODO
+        pass 
 
     def loop(self):
         while not rospy.is_shutdown():
