@@ -61,7 +61,3 @@ $ catkin build
 
     -   `AXIS_LEFT_PAD_VERTICAL` **_Up_** : Move the drone forward following the **Vanishing Point**
     -   `AXIS_LEFT_PAD_VERTICAL` **_Down_** : Turn the drone 180 degrees, then move the drone forward following the **Vanishing Point**
-    -   `AXIS_LEFT_PAD_HORIZONTAL` **_Left_** : Turn the drone 90 degrees in the clockwise direction and move the drone to the left direction towards the **Vanishing Point**
-    -   `AXIS_LEFT_PAD_HORIZONTAL` **_Right_** : Turn the drone 90 degrees in the counter clockwise direction and move the drone to the right direction towards the **Vanishing Point**
-    -   `AXIS_RIGHT_PAD_HORIZONTAL` **_Left_** : Turn the drone 90 degrees in the clockwise direction and move the drone to the left until it finds a door, once found, the drone enters it
-    -   `AXIS_RIGHT_PAD_HORIZONTAL` **_Right_** : Turn the drone 90 degrees in the counter clockwise direction and move the drone to the right until it finds a door, once found, the drone enters it
