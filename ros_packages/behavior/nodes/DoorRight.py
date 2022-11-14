@@ -9,7 +9,7 @@ from slideright import SlideRight
 
 class DoorRight(SlideRight):
     def __init__(self):
-        super.__init__()
+        super().__init__()
         self.door_exists = False
         self.door_exists_mutex = Lock()
         self.sub_door_exists = rospy.Subscriber(

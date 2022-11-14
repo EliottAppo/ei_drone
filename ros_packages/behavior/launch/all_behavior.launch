@@ -22,8 +22,8 @@
 	<node pkg="behavior" type="slideright.py" name="slideright"/>
 	<node pkg="behavior" type="align_corridor.py" name="align_corridor"/>
 	<node pkg="behavior" type="center_corridor.py" name="center_corridor"/>
-	<node pkg="behavior" type="TurnLeft.py" name="turn_left_logical"/>
-	<node pkg="behavior" type="TurnRight.py" name="turn_right_logical"/>
+	<node pkg="behavior" type="Logical_TurnLeft.py" name="turn_left_logical"/>
+	<node pkg="behavior" type="Logical_TurnRight.py" name="turn_right_logical"/>
 	<node pkg="behavior" type="DoorLeft.py" name="logical_door_left"/>
 	<node pkg="behavior" type="DoorRight.py" name="logical_door_right"/>
 </launch>
