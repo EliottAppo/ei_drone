@@ -15,7 +15,7 @@ class DoorLeft(SlideLeft):
         self.pub_command = rospy.Publisher('/command', String, queue_size=1)
         self.door_count = 0
         self.door_count_mutex = Lock()
-        self.door_min_count = 20
+        self.door_min_count = 10
 
     def door_exists_cb(self, msg):
         with self.door_count_mutex:

@@ -17,7 +17,7 @@ class Turn_Left(SlideLeft):
         # detected
         self.vp_count = 0
         self.vp_count_mutex = Lock()
-        self.vp_min_count = 20
+        self.vp_min_count = 15
 
         self.sub_vanishing_point = rospy.Subscriber(
             '/vanishing_point/point_result', VanishingPoint, self.vanishing_point_cb)

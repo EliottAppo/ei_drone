@@ -105,14 +105,27 @@ class JoyTeleop:
 
         elif self.axis_low(msg, AXIS_LEFT_FRONT):
             # in logical mode
+            self.logical_mode_flag = True
             if self.axis_high_orthogonal(msg, AXIS_LEFT_PAD_VERTICAL, AXIS_LEFT_PAD_HORIZONTAL):
                 self.send_command("MoveVP")
-                self.logical_mode_flag = True
+
+            if self.axis_high_orthogonal(msg,AXIS_LEFT_PAD_HORIZONTAL,AXIS_LEFT_PAD_VERTICAL):
+                self.send_command("Turn_Left")
+            
+            if self.axis_low_orthogonal(msg,AXIS_CROSS_HORIZONTAL,AXIS_CROSS_VERTICAL):
+                self.send_command("Turn_Right")
+
+            if self.axis_high_orthogonal(msg,AXIS_RIGHT_PAD_HORIZONTAL,AXIS_RIGHT_PAD_VERTICAL):
+                self.send_command("DoorLeft")
+            
+            if self.axis_low_orthogonal(msg,AXIS_RIGHT_PAD_HORIZONTAL,AXIS_RIGHT_PAD_VERTICAL):
+                self.send_command("DoorRight")
+
 
         elif self.logical_mode_flag and self.axis_high(msg, AXIS_LEFT_FRONT):
+            self.logical_mode_flag = False
             self.send_command("Hover")
 
-            self.logical_mode_flag = False
 
         elif self.axis_high_orthogonal(msg, AXIS_LEFT_PAD_VERTICAL, AXIS_LEFT_PAD_HORIZONTAL):
             self.send_command("MoveForward")
