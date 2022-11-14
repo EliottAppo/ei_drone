@@ -38,8 +38,8 @@ class DoorLeft(SlideLeft):
             self.door_exists = False
     
     def door_existed(self):
-        # TODO
-        pass 
+        with self.door_exists_mutex:
+            return self.door_exists
 
     def loop(self):
         while not rospy.is_shutdown():
