@@ -134,6 +134,9 @@ class JoyTeleop:
         elif self.axis_high_orthogonal(msg, AXIS_RIGHT_PAD_VERTICAL, AXIS_RIGHT_PAD_HORIZONTAL):
             self.send_command("MoveUp")
 
+        elif self.axis_low_orthogonal(msg, AXIS_RIGHT_PAD_VERTICAL, AXIS_RIGHT_PAD_HORIZONTAL):
+            self.send_command("MoveDown")
+
         elif self.axis_high(msg, AXIS_CROSS_HORIZONTAL):
             self.send_command("UTurnLeft")
 
