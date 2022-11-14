@@ -11,6 +11,7 @@ from std_msgs.msg import String
 class Scheduler:
     def __init__(self, pub_behavior):
         self.queue = []
+        self.queue_mutex=Lock()
         self.time = None
         self.pub_behavior = pub_behavior
 
@@ -20,15 +21,16 @@ class Scheduler:
             self.queue.append(behavior)
 
     def publish(self):
-        for behavior in self.queue:
-            current_time = time()
-            date, name = behavior
-            if current_time-self.time > date:
-                msg = BehaviorStatus()
-                msg.name = name
-                msg.status = True
-                self.pub_behavior.publish(msg)
-                self.queue.remove(self.queue[0])
+        with self.queue_mutex:
+            for behavior in self.queue:
+                current_time = time()
+                date, name = behavior
+                if current_time-self.time > date:
+                    msg = BehaviorStatus()
+                    msg.name = name
+                    msg.status = True
+                    self.pub_behavior.publish(msg)
+                    self.queue.remove(self.queue[0])
 
 
 class Command:
