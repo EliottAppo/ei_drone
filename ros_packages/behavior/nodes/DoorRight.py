@@ -44,11 +44,11 @@ class DoorRight(SlideRight):
                     self.reset_detection()
                     self.set_status(False)
                     self.pub_command.publish('CrossDoor')
-            else:
-                # NOTE: this is in open loop. In closed loop we have to get x,y,z speeds from the loop feedback
-                self.pub_linear_x.publish(0)
-                self.pub_linear_y.publish(0.5)
-                self.pub_angular_z.publish(0)
+                else:
+                    # NOTE: this is in open loop. In closed loop we have to get x,y,z speeds from the loop feedback
+                    # self.pub_linear_x.publish(0)
+                    # self.pub_linear_y.publish(0.5)
+                    # self.pub_angular_z.publish(0)
                 rospy.sleep(0.1)
 
 

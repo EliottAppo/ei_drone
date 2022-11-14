@@ -56,7 +56,7 @@ class Logical_TurnRight(SlideRight):
                     self.pub_linear_x.publish(0)
                     self.pub_linear_y.publish(0.5)
                     self.pub_angular_z.publish(0)
-                    rospy.sleep(0.1)
+                rospy.sleep(0.1)
 
 
 def main():

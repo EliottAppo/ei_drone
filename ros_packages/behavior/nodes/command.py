@@ -52,7 +52,7 @@ class Command:
             "TurnLeft": [(0, "TurnLeft")],
             "UTurnRight": [(0, "Hover"), (0.1, "TurnRight"), (6.5, "Hover")],
             "UTurnLeft": [(0, "Hover"), (0.1, "TurnLeft"), (6.5, "Hover")],
-            "TurnBack" : [(0, "AlignCorridor"), (0.1, "CenterCorridor"),(0.5, "Hover"), (2, "UTurnLeft"),(4, "AlignCorridor"), (4.1, "CenterCorridor"), (5.5, "MoveForwardVp")],
+            "TurnBack" : [(0.5, "Hover"), (0.6, "TurnLeft"), (7, "Hover"),(7.5, "AlignCorridor"), (7.6, "CenterCorridor"), (8.5, "MoveForwardVp")],
             "SlideLeft": [(0, "SlideLeft")],
             "SlideRight": [(0, "SlideRight")],
             "MoveVP": [(0, "AlignCorridor"), (0.1, "CenterCorridor"), (1.5, "MoveForwardVp")],
