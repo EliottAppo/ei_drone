@@ -38,7 +38,7 @@ class Command:
         ]
         self.commands = {
             "TakeOff": [(0, "TakeOff")],
-            "Land": [(0.3, "Hover"), (0, "Land")],
+            "Land": [(0, "Hover"), (0.3, "Land")],
             "Hover": [(0, "Hover")],
             "MoveForward": [(0, "MoveForward")],
             "MoveBackward": [(0, "MoveBackward")],
@@ -53,7 +53,7 @@ class Command:
             "SlideLeft": [(0, "SlideLeft")],
             "SlideRight": [(0, "SlideRight")],
             "MoveVP": [(0, "AlignCorridor"), (0.1, "CenterCorridor"), (1.5, "MoveForwardVp")],
-            "CrossDoor": [(0, "Hover"), (0.1, "MoveForward")]
+            "TurnBack" : [(0.5, "Hover"), (0.6, "TurnLeft"), (7, "Hover"),(7.5, "AlignCorridor"), (7.6, "CenterCorridor"), (8.5, "MoveForwardVp")]
         }
         self.sub_command = rospy.Subscriber(
             "/command", String, self.command_cb, queue_size=1, buff_size=2**22)
