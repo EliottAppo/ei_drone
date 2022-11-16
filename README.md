@@ -1,5 +1,9 @@
 # EI Semi autonomous navigation of UAVs : Mercury Team
 
+This project is supported by the Parrot company, which provides the drones for the experimentations.
+
+The aim of this project is to design an operating system of autonomous navigation and to implement it on a Bebop2 by Parrot. 
+
 ## Team members
 
 -   **Eliott DUMONT**
